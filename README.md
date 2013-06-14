@@ -1,4 +1,4 @@
-# Code 42 API
+# Code 42 API Ruby Gem
 
 A Ruby interface to the Code 42 API
 
@@ -6,128 +6,167 @@ A Ruby interface to the Code 42 API
 
 Add this line to your application's Gemfile:
 
-    gem 'code42'
+```ruby
+gem 'code42'
+```
 
 And then execute:
 
-    $ bundle
+```bash
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install code42
+```bash
+$ gem install code42
+```
 
 ## Configuration
 
-    client = Code42::Client.new(
-      host: 'staging.code42.com',
-      port: 1234,
-      https: true,
-      api_root: '/api/',
-      username: 'testuser',
-      password: 'letmein'
-    )
-
-## Authentication
-
+```ruby
+client = Code42::Client.new(
+  host: 'staging.code42.com',
+  port: 1234,
+  https: true,
+  api_root: '/api/',
+  username: 'testuser',
+  password: 'letmein'
+)
 ```
+
+### Authentication
+
+```ruby
 token = client.get_token
 ```
 
 Then you can pass this token for further requests:
 
-    client = Code42::Client.new(
-      host: 'staging.code42.com',
-      port: 1234,
-      https: true,
-      api_root: '/api/',
-      token: token
-    )
+```ruby
+client = Code42::Client.new(
+  host: 'staging.code42.com',
+  port: 1234,
+  https: true,
+  api_root: '/api/',
+  token: token
+)
+```
 
-## User
+## Resources
 
-attributes:
-
-    [:id,
-     :uid,
-     :status,
-     :username,
-     :email,
-     :first_name,
-     :last_name,
-     :quota_in_bytes,
-     :org_id,
-     :org_uid,
-     :org_name,
-     :active,
-     :blocked,
-     :email_promo,
-     :invited,
-     :org_type,
-     :username_is_an_email,
-     :created_at,
-     :updated_at]
-
-## Org
+### User
 
 attributes:
 
-    [:id,
-     :uid,
-     :name,
-     :status,
-     :active,
-     :blocked,
-     :parent_id,
-     :type,
-     :external_id,
-     :hierarchy_counts,
-     :config_inheritance_counts,
-     :created_at,
-     :updated_at,
-     :registration_key,
-     :reporting,
-     :custom_config,
-     :settings,
-     :settings_inherited,
-     :settings_summary]
+```ruby
+[:id,
+ :uid,
+ :status,
+ :username,
+ :email,
+ :first_name,
+ :last_name,
+ :quota_in_bytes,
+ :org_id,
+ :org_uid,
+ :org_name,
+ :active,
+ :blocked,
+ :email_promo,
+ :invited,
+ :org_type,
+ :username_is_an_email,
+ :created_at,
+ :updated_at]
+```
+
+### Org
+
+attributes:
+
+```ruby
+[:id,
+ :uid,
+ :name,
+ :status,
+ :active,
+ :blocked,
+ :parent_id,
+ :type,
+ :external_id,
+ :hierarchy_counts,
+ :config_inheritance_counts,
+ :created_at,
+ :updated_at,
+ :registration_key,
+ :reporting,
+ :custom_config,
+ :settings,
+ :settings_inherited,
+ :settings_summary]
+```
 
 ## Usage
 
 ### Ping a host
 
-```
+```ruby
 success = client.ping.success?
 ```
 
 ### Fetch the currently authorized API user
 
-```
+```ruby
 user = client.user
 ```
 
-### Get the get a user by ID
+### Fetch a user by ID
 
-```
+```ruby
 user = client.user(42)
 ```
 
 ### Fetch the Org for the currently authorized API user
 
-```
+```ruby
 org = client.org
 ```
 
 ### Fetch a specific Org by ID
 
-```
+```ruby
 org = client.org(42)
 ```
 
 ### Validate a token
 
-```
+```ruby
 client.validate_token(token).valid?
 ```
+
+### Documentation
+
+The project owner will publish a README.md with each project.
+
+The community can created linked and versioned documentation in the Wiki associated with this project:
+
+https://github.com/code42/code42_api_ruby/wiki
+
+### Bug / Issue tracking
+
+[Please open a new issue](https://github.com/code42/code42_api_ruby/issues). Before opening any issue, please search for existing issues.
+
+## Authors/Maintainers
+
+[@ncolgan](http://github.com/ncolgan)
+
+[@melissavoegeli](http://github.com/melissavoegeli)
+
+## Contributors
+
+[@jrmehle](http://github.com/jrmehle)
+
 # Code 42 README
 
 ## What is this?
@@ -135,7 +174,7 @@ client.validate_token(token).valid?
 The Code 42 open source project is a set of frameworks and examples for developing solutions based on the Code 42 CrashPlan REST API.
 
 * [CrashPlan product website](http://www.code42.com/enterprise)
-* [CrashPlan online API documentation](http://www.code42.com/apidocviewer)
+* [CrashPlan online API documentation](http://www.crashplan.com/apidocviewer)
 * [Code 42 Open Source on Github](https://github.com/code42)
 
 Our goal is to give developers the tools necessary to build solutions that range from integration efforts to stand-alone application experiences.
